@@ -12,9 +12,14 @@ import Firebase
 
 class result : UIViewController,UITableViewDataSource{
     
-  
+    func colorForIndex(index: Int) -> UIColor {
+        
+        let R = Double.random(in: 0.1...1)
+        let G = Double.random(in: 0.1...1)
+        let B = Double.random(in: 0.1...1)
+        return UIColor(red: CGFloat(R), green:CGFloat(G) , blue: CGFloat(B), alpha: 1.0)
+    }
     
-   
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,6 +32,7 @@ class result : UIViewController,UITableViewDataSource{
             return UITableViewCell()
         }
         cell.course_message.text = parse_data[indexPath.row]
+        cell.backgroundColor = colorForIndex(index: indexPath.row)
         return cell
     }
     override func viewDidLoad() {

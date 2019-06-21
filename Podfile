@@ -9,6 +9,6 @@ use_frameworks!
 target 'test65' do
      
   pod 'Firebase/Database'
-
+  pod  'Firebase/Storage'
 
 end
