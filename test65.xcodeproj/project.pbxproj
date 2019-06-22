@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		298A6D1C7422B630546D5F30 /* Pods_test65.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF692DA34A617DA384AD85C2 /* Pods_test65.framework */; };
-		5938BE1722B9049500389E16 /*  main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5938BE1622B9049500389E16 /*  main.swift */; };
 		5989452922B7C2AE000A24EC /* test65.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5989452822B7C2AE000A24EC /* test65.swift */; };
 		5989452B22B7C4B6000A24EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5989452A22B7C4B6000A24EC /* GoogleService-Info.plist */; };
 		5994D54622BB3609003FABE2 /* course_cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5994D54522BB3609003FABE2 /* course_cell.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		545D1CF219DDE50EF2906BB4 /* Pods-test65.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test65.debug.xcconfig"; path = "Target Support Files/Pods-test65/Pods-test65.debug.xcconfig"; sourceTree = "<group>"; };
-		5938BE1622B9049500389E16 /*  main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " main.swift"; sourceTree = "<group>"; };
 		5989452822B7C2AE000A24EC /* test65.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = test65.swift; path = ../../test65.swift; sourceTree = "<group>"; };
 		5989452A22B7C4B6000A24EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5994D54522BB3609003FABE2 /* course_cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course_cell.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				5989452A22B7C4B6000A24EC /* GoogleService-Info.plist */,
 				5B4F18DF22A79C3D00895080 /* Info.plist */,
 				5989452822B7C2AE000A24EC /* test65.swift */,
-				5938BE1622B9049500389E16 /*  main.swift */,
 				599C742E22B94D1D00878676 /* search_course.swift */,
 				599C743222B9A18500878676 /* result.swift */,
 				5994D54522BB3609003FABE2 /* course_cell.swift */,
@@ -228,7 +225,6 @@
 				5989452922B7C2AE000A24EC /* test65.swift in Sources */,
 				5B4F18D422A79C3C00895080 /* AppDelegate.swift in Sources */,
 				599C743322B9A18500878676 /* result.swift in Sources */,
-				5938BE1722B9049500389E16 /*  main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

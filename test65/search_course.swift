@@ -9,11 +9,21 @@
 import UIKit
 import Firebase
 
-var parse_data : [String]! = []
+struct course_info{
+    var depinf : String
+    var nameinf : String
+    var timeinf : String
+    var profinf: String
+    var credit : Int
+}
+
 class search_course : UIViewController{
+    
+    var parse_data  :[course_info] = []
+     var test :String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         // Do any additional setup after loading the view.
     }
     
@@ -21,7 +31,7 @@ class search_course : UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue,sender: Any?){
         let controller = segue.destination as? result
-      //  controller?.course_image.text = "111"
+         controller?.get_data = parse_data
         
         
     }
@@ -50,7 +60,7 @@ class search_course : UIViewController{
     
 
    @IBAction func Search(_ sender: Any) {
-        if Fdep.text!.isEmpty && FCname.text!.isEmpty &&
+       if Fdep.text!.isEmpty && FCname.text!.isEmpty &&
             Fprof.text!.isEmpty &&
             Ftime.text!.isEmpty{
         let acontroller = UIAlertController(title: "無效輸入條件", message: "至少輸入一個欄位", preferredStyle: .alert)
@@ -65,6 +75,7 @@ class search_course : UIViewController{
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             acontroller.addAction(okAction)
             present(acontroller, animated: true, completion: nil)
+            
             return
         }
         var dref: DatabaseReference!
@@ -72,32 +83,30 @@ class search_course : UIViewController{
        // var ncourse:Int = 0
     func post (V: DataSnapshot)
     {
-        parse_data.append("開課系所:")
-        parse_data[parse_data.count - 1].append(V.childSnapshot(forPath:"開課系所"
-            ).value as! String)
-        parse_data[parse_data.count - 1].append("\n課名:")
-        parse_data[parse_data.count - 1].append(V.childSnapshot(forPath: "中文課名").value as! String)
-        parse_data[parse_data.count - 1].append("\n上課時間:")
-        let nt = V.childSnapshot(forPath: "上課時間").childrenCount
-        if nt == 0{
+        let nt = V.childSnapshot(forPath:"上課時間").childrenCount
+        
+            parse_data.append((course_info)(depinf: (V.childSnapshot(forPath: "開課系所").value as? String)!,                                  nameinf: ((V.childSnapshot(forPath: "中文課名").value as? String)!),
+                                            timeinf: "",
+                                            profinf: (V.childSnapshot(forPath: "授課老師").value as? String)!,
+                                            credit:  ((V.childSnapshot(forPath: "學分").value as? Int)!)
+                                            )
+                              )
+        if V.childSnapshot(forPath:"上課時間").childrenCount > 0{
             
-        }
-        else{
-            for j in 0 ... (nt-1){
-                
-                parse_data[parse_data.count - 1].append((V.childSnapshot(forPath: "上課時間").childSnapshot(forPath: String(j)).value as! String))
-                parse_data[parse_data.count-1].append(",")
+            for j in 0 ... (nt-1) {
+                parse_data[parse_data.count - 1].timeinf.append((V.childSnapshot(forPath:"上課時間").childSnapshot(forPath: String(j)).value as? String)!)
+                if j < nt-1 {
+                    parse_data[parse_data.count-1].timeinf.append(",")
+                }
             }
-            parse_data[parse_data.count - 1].append((V.childSnapshot(forPath: "上課時間").childSnapshot(forPath: String(nt-1)).value as! String))
         }
         
         
-        parse_data[parse_data.count - 1].append("\n授課老師:")
-        parse_data[parse_data.count - 1].append(V.childSnapshot(forPath: "授課老師").value as! String)
        
     }
     
         dref = Database.database().reference()
+    
         dref.child("courses1081").observe(.value, with: {(snaphost) in
             n = snaphost.childrenCount
             let temp1 :String = self.Fdep.text!
@@ -105,7 +114,7 @@ class search_course : UIViewController{
             let temp3 :String = self.Fprof.text!
             let temp4 :String = self.Ftime.text!
             var t :Int = -1
-            parse_data = []
+            self.parse_data = []
             while t <= (Int)(n-2) {
                  t += 1
                 
@@ -319,7 +328,7 @@ class search_course : UIViewController{
                     }
                 }
             }//end while
-            if parse_data.isEmpty{
+            if self.parse_data.isEmpty{
                     let acontroller = UIAlertController(title: "找不資料", message: "？？？", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     acontroller.addAction(okAction)
@@ -328,9 +337,7 @@ class search_course : UIViewController{
                     return
                 }
                 else{
-                    for i in parse_data{
-                        print(i)
-                    }
+                
                     self.performSegue(withIdentifier: "link2", sender: sender)
                     return
                 }

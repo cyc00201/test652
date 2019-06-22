@@ -10,7 +10,11 @@ import UIKit
 class course_cell : UITableViewCell{
    
     
+    @IBOutlet weak var add_button: UIButton!
     @IBOutlet weak var course_message: UITextView!
+  
+    
+  
     
     
 }
