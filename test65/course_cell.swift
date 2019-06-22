@@ -14,9 +14,8 @@ class course_cell : UITableViewCell{
     @IBOutlet weak var course_message: UITextView!
   
     
-    @IBAction func test(_ sender: UIButton) {
-        print("!!")
-    }
+
+    
     
     
     

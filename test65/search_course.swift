@@ -12,7 +12,7 @@ import Firebase
 struct course_info{
     var depinf : String
     var nameinf : String
-    var timeinf : String
+    var timeinf : [String]
     var profinf: String
     var credit : Int
 }
@@ -86,19 +86,17 @@ class search_course : UIViewController{
         let nt = V.childSnapshot(forPath:"上課時間").childrenCount
         
             parse_data.append((course_info)(depinf: (V.childSnapshot(forPath: "開課系所").value as? String)!,                                  nameinf: ((V.childSnapshot(forPath: "中文課名").value as? String)!),
-                                            timeinf: "",
+                                            timeinf: [],
                                             profinf: (V.childSnapshot(forPath: "授課老師").value as? String)!,
                                             credit:  ((V.childSnapshot(forPath: "學分").value as? Int)!)
                                             )
                               )
-        if V.childSnapshot(forPath:"上課時間").childrenCount > 0{
+        if V.childSnapshot(forPath:"上課時間").childrenCount > 0 {
             
             for j in 0 ... (nt-1) {
                 parse_data[parse_data.count - 1].timeinf.append((V.childSnapshot(forPath:"上課時間").childSnapshot(forPath: String(j)).value as? String)!)
-                if j < nt-1 {
-                    parse_data[parse_data.count-1].timeinf.append(",")
-                }
             }
+            
         }
         
         
