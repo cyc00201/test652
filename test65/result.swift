@@ -62,15 +62,13 @@ class result : UIViewController,UITableViewDataSource{
         var add_title = "ADD"
         add_title.append(String(indexPath.row))
         cell.add_button.setTitle(add_title, for: .normal)
-        if cell.add_button.tag == 0{
-            print ("E")
-        }
-        else{
-            print("P")
-        }
+        
         return cell
     }
     
+    @IBAction func add_course(_ sender: Any) {
+        print("!!")
+    }
     
     
 
